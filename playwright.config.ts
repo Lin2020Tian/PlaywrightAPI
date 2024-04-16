@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
+require('dotenv').config();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -30,7 +30,7 @@ export default defineConfig({
       // set the header per GitHub guideline
       'Accept':'application/vnd.github.v3+json',
       // add authorization token to all request.
-      'Authorization': 'token ${process.env.API_TOKEN}'
+      'Authorization': `token ${process.env.API_TOKEN}`
     },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
