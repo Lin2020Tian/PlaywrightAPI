@@ -30,7 +30,7 @@ export default defineConfig({
       // set the header per GitHub guideline
       'Accept':'application/vnd.github.v3+json',
       // add authorization token to all request.
-      'Authorization': `token ${process.env.API_TOKEN}`
+      'Authorization': `token ${process.env.GITHUB_API_TOKEN}`
     },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
@@ -40,8 +40,16 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'setup',
+      testMatch: /.*\.setup.ts/,
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        storageState: `${process.env.AUTH_USER_FILEPATH}`
+      },
+      dependencies: ['setup'],
     },
 /*
     {

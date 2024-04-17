@@ -3,11 +3,11 @@ import { request } from 'http';
 
 /** test GitHub APIs */
 // set the test repo name and the GitHub username (run command if not known: git config user.name)
-const REPO = 'PlaywrightAPI';
-const USER = 'Lin2020Tian';
+const REPO = process.env.GITHUB_REPO;
+const USER = process.env.GITHUB_USER;
 
 // test API of creating Issue in GitHub repo
-test('Create a bug report', async({ request }) => {
+test('Get a known issue from my github repo', async({ request }) => {
     const bugTitle = 'api test issue title';
     const bugDescription = 'api test issue description';
 
